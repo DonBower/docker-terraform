@@ -9,9 +9,8 @@ LABEL description="This is custom Docker Image for Terraform Services, with prov
 # Disable Prompt During Packages Installation
 ARG DEBIAN_FRONTEND=noninteractive
 ARG ARCH=amd64
-ARG OS_NAME=`uname -s | tr '[:upper:]' '[:lower:]'`
+# ARG OS_NAME=`uname -s | tr '[:upper:]' '[:lower:]'`
 ARG OS_NAME=linux
-ARG thesePlugins=("aws:4.29.0" "random:3.4.3")
 
 # Update Ubuntu Software repository
 RUN apt update --assume-yes \
@@ -23,7 +22,10 @@ RUN apt update --assume-yes \
     && rm -rf /var/lib/apt/lists/* \
     && apt clean
 
-RUN wget https://releases.hashicorp.com/terraform/1.1.9/terraform_1.1.9_${OS_NAME}_${ARCH}.zip \
+COPY .terraformrc /root/.terraformrc
+
+RUN wget --no-check-certificate \
+    https://releases.hashicorp.com/terraform/1.1.9/terraform_1.1.9_${OS_NAME}_${ARCH}.zip \
     && unzip terraform_1.1.9_${OS_NAME}_${ARCH}.zip -d /usr/local/bin
 
 COPY providers.* .
