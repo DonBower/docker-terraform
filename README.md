@@ -14,6 +14,8 @@ ca-certificates, curl, wget, unzip, net-tools, netcat (nc), python-is-python3 py
 yq
 
 # Providers
+| Provider    | Ver      |
+| ----------- | -------- |
 |aws|4.32.0|
 |azure|0.1.1|
 |consul|2.16.2|
