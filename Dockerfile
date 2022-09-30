@@ -5,10 +5,11 @@
 FROM ubuntu:20.04
 
 # LABEL about the custom image
-ARG BUNDLE_DATE="2022-09-29"
-ARG DOCKER_TF_VERSION="1.1.9"
+# ARG BUNDLE_DATE="2022-09-29"
+ARG DOCKER_TF_VERSION
+ARG DOCKER_TAG
 ENV DOCKER_TF_VERSION=${DOCKER_TF_VERSION}
-ENV DOCKER_TF_BUNDLE="${DOCKER_TF_VERSION}-${BUNDLE_DATE}"
+ENV DOCKER_TF_BUNDLE="${DOCKER_TAG}"
 LABEL maintainer="Don.Bower@outlook.com"
 LABEL version="${DOCKER_TF_BUNDLE}"
 LABEL description="This is custom Docker Image for Terraform Services, with providers listed in providers.tsv"
