@@ -5,11 +5,13 @@
 FROM ubuntu:20.04
 
 # LABEL about the custom image
+ARG BUNDLE_DATE="2022-09-29"
+ARG DOCKER_TF_VERSION="1.1.9"
+ENV DOCKER_TF_VERSION=${DOCKER_TF_VERSION}
+ENV DOCKER_TF_BUNDLE="${DOCKER_TF_VERSION}-${BUNDLE_DATE}"
 LABEL maintainer="Don.Bower@outlook.com"
-LABEL version="1.1.9-2022-08-29"
+LABEL version="${DOCKER_TF_BUNDLE}"
 LABEL description="This is custom Docker Image for Terraform Services, with providers listed in providers.tsv"
-ENV DOCKER_TF_VERSION="1.1.9"
-ENV DOCKER_TF_BUNDLE="1.1.9-2022-08-29"
 
 # Disable Prompt During Packages Installation
 ARG DEBIAN_FRONTEND=noninteractive
@@ -50,8 +52,8 @@ RUN wget https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip \
 #                                    LAYER 5                                   #
 ################################################################################
 RUN wget --no-check-certificate \
-    https://releases.hashicorp.com/terraform/1.1.9/terraform_1.1.9_${OS_NAME}_${ARCH}.zip \
-    && unzip terraform_1.1.9_${OS_NAME}_${ARCH}.zip -d /usr/local/bin
+    https://releases.hashicorp.com/terraform/${DOCKER_TF_VERSION}/terraform_${DOCKER_TF_VERSION}_${OS_NAME}_${ARCH}.zip \
+    && unzip terraform_${DOCKER_TF_VERSION}_${OS_NAME}_${ARCH}.zip -d /usr/local/bin
 ################################################################################
 #                                    LAYER 6                                   #
 ################################################################################
