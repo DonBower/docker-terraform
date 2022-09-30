@@ -6,13 +6,14 @@ hcpTeamToken=`vault kv get -format=json kv/HCP/teamToken | jq .data.data.value`
 #
 # build the terraformrc file
 #
-echo 'plugin_cache_dir   = "/root/.terraform.d/plugin-cache"' > terraformrc
-echo 'disable_checkpoint = true' >> terraformrc
-echo '' >> terraformrc
-echo 'credentials "app.terraform.io" {' >> terraformrc
-echo -e "  token = ${hcpTeamToken}" >> terraformrc
-echo '}' >> terraformrc
+cat > terraformrc <<TFLOGIN
+plugin_cache_dir   = "/root/.terraform.d/plugin-cache"
+disable_checkpoint = true
 
+credentials "app.terraform.io" {
+  token = ${hcpTeamToken}
+}
+TFLOGIN
 
 export thisTag=`cat version.txt`
 docker build --tag donbower/terraform:${thisTag} .
@@ -24,7 +25,7 @@ fi
 docker push donbower/terraform:${thisTag}
 #
 # Delete the terraformrc file
-rm terraformrc
+# rm terraformrc
 #
 # Update Vault with the latest Bundle
 #

@@ -6,8 +6,10 @@ FROM ubuntu:20.04
 
 # LABEL about the custom image
 LABEL maintainer="Don.Bower@outlook.com"
-LABEL version="1.1.9-2022-08-27"
+LABEL version="1.1.9-2022-08-29"
 LABEL description="This is custom Docker Image for Terraform Services, with providers listed in providers.tsv"
+ENV DOCKER_TF_VERSION="1.1.9"
+ENV DOCKER_TF_BUNDLE="1.1.9-2022-08-29"
 
 # Disable Prompt During Packages Installation
 ARG DEBIAN_FRONTEND=noninteractive
@@ -42,7 +44,8 @@ RUN pip install yq
 ################################################################################
 RUN wget https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip \
     && unzip awscli-exe-linux-x86_64.zip \
-    && ./aws/install
+    && ./aws/install \
+    && rm awscli-exe-linux-x86_64.zip
 ################################################################################
 #                                    LAYER 5                                   #
 ################################################################################
