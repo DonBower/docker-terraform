@@ -16,7 +16,13 @@ credentials "app.terraform.io" {
 TFLOGIN
 
 export thisTag=`cat version.txt`
-docker build --tag donbower/terraform:${thisTag} .
+export tfVersion=`echo ${thisTag} | cut -d "-" -f 1`
+
+docker build \
+  --build-arg DOCKER_TF_VERSION=${tfVersion} \
+  --build-arg DOCKER_TAG=${thisTag} \
+  --tag donbower/terraform:${thisTag} \
+  .
 errorLevel=$?
 if [[ ${errorLevel} -gt 0 ]]; then
   echo docker build failed, exiting...
