@@ -36,6 +36,8 @@ RUN apt update --assume-yes \
           python-is-python3 \
           python3-pip \
           jq \
+          vim \
+          git \
     && rm -rf /var/lib/apt/lists/* \
     && apt clean
 ################################################################################

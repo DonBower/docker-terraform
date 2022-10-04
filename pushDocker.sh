@@ -36,3 +36,5 @@ docker push donbower/terraform:${thisTag}
 # Update Vault with the latest Bundle
 #
 vault kv put concourse/common/terraformBundle value=`cat version.txt`
+
+rm terraformrc
