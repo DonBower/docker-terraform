@@ -2,7 +2,7 @@ cat ~/.ssh/dockerpw | docker login --username donbower --password-stdin
 #
 # Retreive the HCP Team Token from vault
 #
-hcpTeamToken=`vault kv get -format=json kv/HCP/teamToken | jq .data.data.value`
+hcpTeamToken=`vault kv get -format=json concourse/common/tokens/hcpTeam_owners | jq .data.data.value`
 #
 # build the terraformrc file
 #

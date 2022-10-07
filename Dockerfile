@@ -10,6 +10,7 @@ ARG DOCKER_TF_VERSION
 ARG DOCKER_TAG
 ENV DOCKER_TF_VERSION=${DOCKER_TF_VERSION}
 ENV DOCKER_TF_BUNDLE="${DOCKER_TAG}"
+ENV AWS_PAGER=''
 LABEL maintainer="Don.Bower@outlook.com"
 LABEL version="${DOCKER_TF_BUNDLE}"
 LABEL description="This is custom Docker Image for Terraform Services, with providers listed in providers.tsv"

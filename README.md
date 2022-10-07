@@ -7,6 +7,7 @@ Docker Repo for Terraform image
 [![Ubuntu](https://img.shields.io/static/v1?style=for-the-badge&logo=ubuntu&logoColor=white&label=ubuntu&message=20.04_LTS&color=blue)](https://ubuntu.com/download/server)
 
 # Changelog
+- 1.3.0-2022-10-07 fix token, AWS_PAGER='' to fix aws cli v2
 - 1.3.0-2022-10-04 Add git, vim.
 
 # Pacakages
