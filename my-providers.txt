@@ -1,5 +1,6 @@
 aws
 azure
+azurerm
 consul
 docker
 github

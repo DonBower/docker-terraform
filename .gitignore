@@ -1,4 +1,5 @@
 # Local .terraform directories
+README.md.old
 **/.terraform/*
 terraformrc
 

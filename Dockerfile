@@ -8,9 +8,15 @@ FROM ubuntu:20.04
 # ARG BUNDLE_DATE="2022-09-29"
 ARG DOCKER_TF_VERSION
 ARG DOCKER_TAG
+ARG ARM_CLIENT_ID
+ARG ARM_TENANT_ID
+ARG ARM_CLIENT_SECRET
 ENV DOCKER_TF_VERSION=${DOCKER_TF_VERSION}
 ENV DOCKER_TF_BUNDLE="${DOCKER_TAG}"
 ENV AWS_PAGER=''
+ENV ARM_CLIENT_ID=${ARM_CLIENT_ID}
+ENV ARM_TENANT_ID=${ARM_TENANT_ID}
+ENV ARM_CLIENT_SECRET=${ARM_CLIENT_SECRET}
 LABEL maintainer="Don.Bower@outlook.com"
 LABEL version="${DOCKER_TF_BUNDLE}"
 LABEL description="This is custom Docker Image for Terraform Services, with providers listed in providers.tsv"
@@ -39,6 +45,7 @@ RUN apt update --assume-yes \
           jq \
           vim \
           git \
+    && curl -sL https://aka.ms/InstallAzureCLIDeb | bash \
     && rm -rf /var/lib/apt/lists/* \
     && apt clean
 ################################################################################

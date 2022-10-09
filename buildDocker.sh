@@ -34,13 +34,3 @@ if [[ ${errorLevel} -gt 0 ]]; then
   echo docker build failed, exiting...
   exit ${errorLevel}
 fi
-docker push donbower/terraform:${thisTag}
-#
-# Delete the terraformrc file
-# rm terraformrc
-#
-# Update Vault with the latest Bundle
-#
-vault kv put concourse/common/terraformBundle value=`cat version.txt`
-
-rm terraformrc
