@@ -3,9 +3,9 @@ cat ~/.ssh/dockerpw | docker login --username donbower --password-stdin
 # Retreive the HCP Team Token from vault
 #
 hcpTeamToken=`vault kv get -format=json concourse/common/tokens/hcpTeam_owners | jq .data.data.value`
-azClientID=`vault kv get -format=json concourse/common/azure/role_Contributor | jq .data.data.value.appId`
-azClientSecret=`vault kv get -format=json concourse/common/azure/role_Contributor | jq .data.data.value.password`
-azTenantID=`vault kv get -format=json concourse/common/azure/role_Contributor | jq .data.data.value.tenant`
+azClientID=`vault kv get -format=json concourse/common/azure/role_Contributor | jq .data.data.appId`
+azClientSecret=`vault kv get -format=json concourse/common/azure/role_Contributor | jq .data.data.password`
+azTenantID=`vault kv get -format=json concourse/common/azure/role_Contributor | jq .data.data.tenant`
 #
 # build the terraformrc file
 #
